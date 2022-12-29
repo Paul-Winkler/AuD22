@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class LongestCommonSubsequence {
     public static void main(String[] args) {
         String A = "Katze";
-        String B = "Kunde";
+        String B = "Katze";
 
         int length = calc(A, B);
 
@@ -30,7 +30,7 @@ public class LongestCommonSubsequence {
             }
 
             // uncomment to see table
-            // System.out.println(Arrays.toString(table[i]));
+            System.out.println(Arrays.toString(table[i]));
         }
 
         return table[A.length()][B.length()];
