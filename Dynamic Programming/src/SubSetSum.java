@@ -3,9 +3,9 @@ import java.util.Arrays;
 public class SubSetSum {
     public static void main(String[] args) {
         // items in the set, each entry represents the value of each item
-        int[] items = new int[]{2,3,1};
+        int[] items = new int[]{2,2,2,2};
 
-        double ratio = 0.5;
+        double ratio = 1.0/3;
         
         System.out.println(String.format("A split with ratio %f is%s possible", ratio, isSubsetPossible(items, ratio) ? "": " not"));
     }
@@ -14,7 +14,7 @@ public class SubSetSum {
         // check if split is possible
         int sum = 0;
         for (int item : items) sum += item;
-        assert((sum*ratio) % 1 == 0);
+        if ((sum*ratio) % 1 != 0) return false;
 
         // calculate the target value z
         int z = (int) (sum * ratio);
