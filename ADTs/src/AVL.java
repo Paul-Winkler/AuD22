@@ -1,9 +1,9 @@
 import lists.trees.TreeNode;
 
-public class AVL {
-    private TreeNode top = null;
+// warning: this code is not complete
 
-    public AVL() {}
+public class AVL {
+    private TreeNode top;
 
     public void insert(int x) {
         // hanlde first element
@@ -77,27 +77,21 @@ public class AVL {
     }
 
     private void rotateRight(TreeNode anchor) {
-        TreeNode p = anchor.left;
-        TreeNode B = p.right;
+        TreeNode c = anchor.left;
+        TreeNode b = c.right;
 
-        // reposition p
-        this.sync(anchor.parent, p, anchor == anchor.parent.left);
-        // reposition B
-        this.sync(anchor, B, true);
-        // reposition anchor
-        this.sync(p, anchor, false);
+        this.sync(anchor.parent, c, anchor == anchor.parent.left);
+        this.sync(c, anchor, false);
+        this.sync(b, anchor, true);
     }
 
     private void rotateLeft(TreeNode anchor) {
-        TreeNode p = anchor.left;
-        TreeNode B = p.right;
+        TreeNode c = anchor.right;
+        TreeNode b = c.left;
 
-        // reposition p
-        this.sync(anchor.parent, p, anchor == anchor.parent.left);
-        // reposition B
-        this.sync(anchor, B, true);
-        // reposition anchor
-        this.sync(p, anchor, false);
+        this.sync(anchor.parent, c, anchor == anchor.parent.left);
+        this.sync(c, anchor, true);
+        this.sync(anchor, b, false);
     }
     
     public TreeNode search(int x) {
@@ -126,8 +120,6 @@ public class AVL {
         if (node.key == x) return node;
         else return null;
     }
-
-
 
     public TreeNode remove(int x) {
         TreeNode target = search(x, false);
